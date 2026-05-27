@@ -22,6 +22,6 @@
   modules.nginx.enable     = true;
   modules.go.enable        = true;
   modules.node.enable      = true;
-  modules.wordpress.enable = false;   # flip true + set domain to activate
+  modules.wordpress.enable = true;   # flip true + set domain to activate
   # modules.wordpress.domain = "example.com";
 }
