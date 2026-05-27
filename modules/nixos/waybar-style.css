@@ -15,6 +15,7 @@ window#waybar {
   padding: 0 8px;
   color: #6c7086;
   background: transparent;
+  font-family: "Symbols Nerd Font Mono";
 }
 
 #workspaces button.active {
