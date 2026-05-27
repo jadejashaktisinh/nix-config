@@ -34,27 +34,33 @@ window#waybar {
 }
 
 #clock {
-  color: #f38ba8;
+  background-color: rgba(30, 30, 46, 0.85);
+  color: #cdd6f4;
   padding: 0 12px;
   font-weight: bold;
 }
 
 #tray {
+  background-color: rgba(30, 30, 46, 0.85);
+  color: #cdd6f4;
   padding: 0 8px;
 }
 
 #cpu {
-  color: #89b4fa;
+  background-color: rgba(30, 30, 46, 0.85);
+  color: #cdd6f4;
   padding: 0 10px;
 }
 
 #memory {
-  color: #cba6f7;
+  background-color: rgba(30, 30, 46, 0.85);
+  color: #cdd6f4;
   padding: 0 10px;
 }
 
 #network {
-  color: #94e2d5;
+  background-color: rgba(30, 30, 46, 0.85);
+  color: #cdd6f4;
   padding: 0 10px;
 }
 
