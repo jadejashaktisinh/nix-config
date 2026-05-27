@@ -1,0 +1,25 @@
+{ inputs, lib, config, pkgs, ... }: {
+  imports = [
+    ./hardware-configuration.nix
+    ../modules/nixos/core.nix
+    ../modules/nixos/desktop.nix
+    ../modules/nixos/nginx.nix
+    ../modules/nixos/go.nix
+    ../modules/nixos/node.nix
+    ../modules/nixos/wordpress.nix
+    ../modules/nixos/hyprland.nix
+  ];
+
+  nixpkgs.overlays = [
+    inputs.self.overlays.additions
+    inputs.self.overlays.modifications
+    inputs.self.overlays.unstable-packages
+  ];
+
+  # --- Toggle services here ---
+  modules.nginx.enable     = true;
+  modules.go.enable        = true;
+  modules.node.enable      = true;
+  modules.wordpress.enable = false;   # flip true + set domain to activate
+  # modules.wordpress.domain = "example.com";
+}

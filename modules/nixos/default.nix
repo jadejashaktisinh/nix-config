@@ -3,4 +3,10 @@
 {
   # List your module files here
   # my-module = import ./my-module.nix;
+  notifications = import ./notifications.nix;
+  fonts = import ./fonts.nix;
+  kitty = import ./kitty.nix;
+  zsh = import ./zsh.nix;
+  waybar = import ./waybar.nix;
+  hyprland = import ./hyprland.nix;
 }

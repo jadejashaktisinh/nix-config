@@ -1,0 +1,31 @@
+{
+  "logo": {
+    "source": "nixos",
+    "color": {
+      "1": "blue",
+      "2": "cyan"
+    }
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "blue",
+      "title": "cyan"
+    }
+  },
+  "modules": [
+    { "type": "title", "format": "{user}@{host}" },
+    "separator",
+    { "type": "os",     "key": " OS" },
+    { "type": "kernel", "key": " Kernel" },
+    { "type": "wm",     "key": " WM" },
+    { "type": "shell",  "key": " Shell" },
+    { "type": "terminal","key": " Terminal" },
+    { "type": "cpu",    "key": " CPU" },
+    { "type": "memory", "key": " RAM" },
+    { "type": "disk",   "key": " Disk" },
+    { "type": "uptime", "key": " Uptime" },
+    "separator",
+    { "type": "colors", "paddingLeft": 2, "symbol": "circle" }
+  ]
+}
