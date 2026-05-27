@@ -198,7 +198,7 @@
     };
 
     # LSP servers as packages
-    home.packages = with pkgs; [ nil nodePackages.typescript-language-server gopls ];
+    home.packages = with pkgs; [ nil nodePackages.typescript-language-server gopls mariadb ];
 
     programs.bash = {
       enable = true;
