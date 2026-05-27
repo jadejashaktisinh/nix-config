@@ -23,7 +23,7 @@
     };
 
     services.phpfpm.pools.wordpress = {
-      user = "wordpress";
+      user = "webdev4";
       settings = {
         "listen.owner" = config.services.nginx.user;
         "pm" = "dynamic";
@@ -37,7 +37,7 @@
     services.nginx.virtualHosts.${config.modules.wordpress.domain} = {
       root = "/var/lib/wordpress";
       locations."/" = {
-        index = "index.php";
+        index = "index.php index.html";
         tryFiles = "$uri $uri/ /index.php?$args";
       };
       locations."~ \\.php$" = {
@@ -53,13 +53,9 @@
     environment.systemPackages = with pkgs; [ php wordpress ];
 
     systemd.tmpfiles.rules = [
-      "d /var/lib/wordpress 0750 wordpress nginx -"
+      "d /var/lib/wordpress 0750 webdev4 nginx -"
     ];
 
-    users.users.wordpress = {
-      isSystemUser = true;
-      group = "wordpress";
-    };
-    users.groups.wordpress = {};
+
   };
 }
