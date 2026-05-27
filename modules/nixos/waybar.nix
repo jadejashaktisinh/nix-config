@@ -15,18 +15,8 @@
         modules-center = [ "hyprland/window" ];
         modules-right = [ "cpu" "memory" "network" "tray" "clock" ];
         "hyprland/workspaces" = {
-          format = "{icon}";
+          format = "{id}";
           on-click = "activate";
-          format-icons = {
-            "1" = "";
-            "2" = "";
-            "3" = "";
-            "4" = "";
-            "5" = "";
-            "urgent" = "";
-            "focused" = "";
-            "default" = "";
-          };
         };
         cpu = {
           format = " {usage}%";
