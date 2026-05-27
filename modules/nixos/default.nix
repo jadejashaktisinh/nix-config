@@ -7,6 +7,6 @@
   fonts = import ./fonts.nix;
   kitty = import ./kitty.nix;
   zsh = import ./zsh.nix;
-  waybar = import ./waybar.nix;
+  #waybar = import ./waybar.nix;
   hyprland = import ./hyprland.nix;
 }

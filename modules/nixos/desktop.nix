@@ -4,7 +4,7 @@
 
   environment.systemPackages = with pkgs; [
     # Desktop
-    firefox kitty slack waybar rofi mpvpaper mako
+    firefox kitty slack rofi mpvpaper mako
     wl-clipboard grimblast cliphist
     # Media / brightness
     brightnessctl wireplumber

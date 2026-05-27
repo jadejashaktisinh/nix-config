@@ -8,6 +8,7 @@
     ../modules/nixos/node.nix
     ../modules/nixos/wordpress.nix
     ../modules/nixos/hyprland.nix
+    ../modules/nixos/waybar.nix
   ];
 
   nixpkgs.overlays = [
