@@ -18,6 +18,7 @@
       ensureDatabases = [ "wordpress" ];
       ensureUsers = [{
         name = "wordpress";
+        password = "mle3uEu2Yv139uKlet4CMIhyfgQKXcgW";
         ensurePermissions = { "wordpress.*" = "ALL PRIVILEGES"; };
       }];
     };
