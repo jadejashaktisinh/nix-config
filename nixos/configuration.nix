@@ -9,6 +9,7 @@
     ../modules/nixos/wordpress.nix
     ../modules/nixos/hyprland.nix
     ../modules/nixos/waybar.nix
+    ../modules/nixos/fonts.nix
   ];
 
   nixpkgs.overlays = [

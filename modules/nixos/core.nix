@@ -5,6 +5,8 @@
   networking.networkmanager.enable = true;
   networking.hostName = "nixos";
 
+  time.timeZone = "Asia/Kolkata";
+
   nix.settings = {
     experimental-features = "nix-command flakes";
     flake-registry = "";
