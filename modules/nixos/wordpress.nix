@@ -18,9 +18,12 @@
       ensureDatabases = [ "wordpress" ];
       ensureUsers = [{
         name = "wordpress";
-        password = "mle3uEu2Yv139uKlet4CMIhyfgQKXcgW";
         ensurePermissions = { "wordpress.*" = "ALL PRIVILEGES"; };
       }];
+      initialScript = ''
+        ALTER USER 'wordpress'@'localhost' IDENTIFIED BY 'mle3uEu2Yv139uKlet4CMIhyfgQKXcgW';
+        FLUSH PRIVILEGES;
+      '';
     };
 
     services.phpfpm.pools.wordpress = {
