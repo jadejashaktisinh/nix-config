@@ -66,6 +66,5 @@
 
   home-manager.users.webdev4.home.packages = with pkgs; [
     dunst
-    libnotify
   ];
 }
