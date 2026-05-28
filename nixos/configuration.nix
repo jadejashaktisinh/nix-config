@@ -10,6 +10,9 @@
     ../modules/nixos/hyprland.nix
     ../modules/nixos/waybar.nix
     ../modules/nixos/fonts.nix
+    ../modules/nixos/hardware-service.nix
+    ../modules/nixos/desktop-plasma.nix
+    
   ];
 
   nixpkgs.overlays = [

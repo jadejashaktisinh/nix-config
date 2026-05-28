@@ -4,14 +4,14 @@
 
   environment.systemPackages = with pkgs; [
     # Desktop
-    firefox kitty slack rofi mpvpaper mako
+    firefox kitty slack rofi mpvpaper
     wl-clipboard grimblast cliphist
     # Media / brightness
     brightnessctl wireplumber
     # Terminal tools
     neovim helix bat eza fzf zoxide yazi lazygit btop direnv starship
     # System
-    fastfetch wget jq
+    fastfetch wget jq 
     # setwallpaper: switch live (video) or static (image) wallpaper instantly
     (writeShellScriptBin "setwallpaper" ''
       FILE="$1"
@@ -25,7 +25,11 @@
         mpvpaper -o "no-audio loop hwdec=auto-safe vd-lavc-threads=2 fps=30" "$MON" "$FILE" &
       done
     '')
+    pkgs.gh
+    #nix tools
+    pkgs.nixfmt 
   ];
+
 
   # direnv shell hook system-wide
   programs.direnv.enable = true;
@@ -206,5 +210,7 @@
         if [[ $- == *i* ]]; then fastfetch; fi
       '';
     };
+
+    imports = [ ./git.nix ];
   };
 }

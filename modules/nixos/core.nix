@@ -20,7 +20,7 @@
   users.users.webdev4 = {
     isNormalUser = true;
     description = "webdev4";
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" "nginx"];
     shell = pkgs.bash;
     initialPassword = "123456";
   };
