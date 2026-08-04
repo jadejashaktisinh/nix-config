@@ -1,5 +1,0 @@
-[user]
-    name = Your Personal Name
-    email = personal@example.com
-[core]
-    sshCommand = "ssh -i ~/.ssh/id_rsa_personal"

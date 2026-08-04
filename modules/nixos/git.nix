@@ -18,6 +18,14 @@
           core.sshCommand = "ssh -i ~/.ssh/id_github_personal -o IdentitiesOnly=yes";
         };
       }
+      {
+        # nix-config repo is personal
+        condition = "gitdir:~/nix-config/";
+        contents = {
+          user.email = "bca2023shaktisinh1892@tnraocollege.org";
+          core.sshCommand = "ssh -i ~/.ssh/id_github_personal -o IdentitiesOnly=yes";
+        };
+      }
     ];
   };
 
