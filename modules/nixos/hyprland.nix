@@ -9,7 +9,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'dbus-run-session Hyprland'";
         user = "webdev4";
       };
     };
@@ -22,15 +22,21 @@
         monitor = ",preferred,auto,1";
 
         "exec-once" = [
-          "mpvpaper -o \"no-audio loop hwdec=auto-safe vd-lavc-threads=2 fps=30\" all /home/webdev4/wallpapers/girl-of-the-coral-deep.mp4"
-          "waybar"
-          "dunst"
-          # Clipboard history daemons
-          "wl-paste --type text --watch cliphist store"
-          "wl-paste --type image --watch cliphist store"
-          # Scratchpad terminal (hidden on launch)
-          "kitty --class scratch"
-        ];
+            # 1. CRITICAL: D-Bus environment setup MUST happen first.
+            # We chain it with '&&' to guarantee gnome-keyring starts AFTER the environment is ready.
+            # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets"
+
+            # 2. UI / Desktop bars
+            "waybar"
+            "${pkgs.dunst}/bin/dunst &> /tmp/dunst.log"
+
+            # 3. Clipboard history daemons
+            "wl-paste --type text --watch cliphist store"
+            "wl-paste --type image --watch cliphist store"
+
+            # 4. Scratchpad terminal
+            "kitty --class scratch"
+          ];
 
         general = {
           gaps_in = 6;

@@ -42,7 +42,7 @@
         title = "Dunst";
         class = "Dunst";
         startup_notification = "false";
-        verbosity = "mesg";
+        verbosity = "debug";
         force_xinerama = "false";
       };
       urgency_low = {

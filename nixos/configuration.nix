@@ -12,7 +12,8 @@
     ../modules/nixos/fonts.nix
     ../modules/nixos/hardware-service.nix
     ../modules/nixos/desktop-plasma.nix
-    
+    ../modules/nixos/relay-server.nix
+    ../modules/nixos/prisma.nix
   ];
 
   nixpkgs.overlays = [
@@ -27,4 +28,5 @@
   modules.node.enable      = true;
   modules.wordpress.enable = true;   # flip true + set domain to activate
   # modules.wordpress.domain = "example.com";
+  virtualisation.docker.enable = true;
 }
