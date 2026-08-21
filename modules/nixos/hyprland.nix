@@ -4,16 +4,21 @@
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
 
-  # Use greetd for a more reliable Wayland login
+  # Dynamic greetd setup with session selection
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'dbus-run-session Hyprland'";
-        user = "webdev4";
+        # --sessions allows choosing between Hyprland and Plasma (Wayland)
+        # --remember-session remembers what you picked last time
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --sessions /run/current-system/sw/share/wayland-sessions --remember --remember-session --asterisks";
+        user = "greeter";
       };
     };
   };
+
+  # Make sure greetd unlocks GNOME Keyring properly regardless of session chosen
+  security.pam.services.greetd.enableGnomeKeyring = true;
 
   home-manager.users.webdev4 = { pkgs, ... }: {
     wayland.windowManager.hyprland = {
@@ -22,21 +27,13 @@
         monitor = ",preferred,auto,1";
 
         "exec-once" = [
-            # 1. CRITICAL: D-Bus environment setup MUST happen first.
-            # We chain it with '&&' to guarantee gnome-keyring starts AFTER the environment is ready.
-            # "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets"
-
-            # 2. UI / Desktop bars
-            "waybar"
-            "${pkgs.dunst}/bin/dunst &> /tmp/dunst.log"
-
-            # 3. Clipboard history daemons
-            "wl-paste --type text --watch cliphist store"
-            "wl-paste --type image --watch cliphist store"
-
-            # 4. Scratchpad terminal
-            "kitty --class scratch"
-          ];
+          "waybar"
+          "${pkgs.dunst}/bin/dunst &> /tmp/dunst.log"
+          "wl-paste --type text --watch cliphist store"
+          "wl-paste --type image --watch cliphist store"
+          "kitty --class scratch"
+          "mpvpaper -o 'no-audio loop hwdec=auto-safe fps=30' ALL ~/wallpapers/girl-of-the-coral-deep.mp4"
+        ];
 
         general = {
           gaps_in = 6;
@@ -94,7 +91,6 @@
           disable_hyprland_logo = true;
         };
 
-        # Scratchpad terminal rules
         windowrulev2 = [
           "workspace special:scratch silent, class:^(scratch)$"
           "float, class:^(scratch)$"
@@ -112,17 +108,12 @@
           "$mainMod, V, togglefloating"
           "$mainMod, F, fullscreen"
           "$mainMod, L, exec, hyprlock"
-          # Clipboard history picker
           "$mainMod, P, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
-          # Scratchpad terminal toggle
           "$mainMod, grave, togglespecialworkspace, scratch"
           "$mainMod SHIFT, grave, movetoworkspace, special:scratch"
-          # Screenshot
           "$mainMod SHIFT, S, exec, grimblast copy area"
-          # File manager / lazygit
           "$mainMod, Y, exec, kitty -e yazi"
           "$mainMod, G, exec, kitty -e lazygit"
-          # Arrow key focus/move
           "$mainMod, left, movefocus, l"
           "$mainMod, right, movefocus, r"
           "$mainMod, up, movefocus, u"
@@ -131,17 +122,14 @@
           "$mainMod SHIFT, right, movewindow, r"
           "$mainMod SHIFT, up, movewindow, u"
           "$mainMod SHIFT, down, movewindow, d"
-          # Vim-style focus
           "$mainMod, H, movefocus, l"
           "$mainMod, J, movefocus, d"
           "$mainMod, K, movefocus, u"
           "$mainMod, L, movefocus, r"
-          # Vim-style move window
           "$mainMod SHIFT, H, movewindow, l"
           "$mainMod SHIFT, J, movewindow, d"
           "$mainMod SHIFT, K, movewindow, u"
           "$mainMod SHIFT, L, movewindow, r"
-          # Workspaces
           "$mainMod, 1, workspace, 1"   "$mainMod, 2, workspace, 2"
           "$mainMod, 3, workspace, 3"   "$mainMod, 4, workspace, 4"
           "$mainMod, 5, workspace, 5"   "$mainMod, 6, workspace, 6"
@@ -159,7 +147,6 @@
           "$mainMod SHIFT, 0, movetoworkspace, 10"
         ];
 
-        # Volume and brightness (no modifier needed for media keys)
         bindel = [
           ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
           ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"

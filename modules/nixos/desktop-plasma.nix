@@ -5,13 +5,13 @@
   # SYSTEM LAYER (Native KDE SDDM display manager and Plasma 6)
   # ---------------------------------------------------------------------------
   services.xserver.enable = true;
-  
+
   services.displayManager = {
     sddm = {
       enable = true;
       wayland.enable = true;
     };
-    defaultSession = "plasma";
+    # defaultSession = "plasma";
   };
 
   services.desktopManager.plasma6.enable = true;
@@ -19,7 +19,7 @@
   # Essential backend hardware services
   services.blueman.enable = true;
   networking.networkmanager.enable = true;
-  
+
   # Inject fonts globally so your terminal and layouts render beautifully
   fonts.packages = with pkgs; [
     font-awesome
@@ -30,7 +30,7 @@
   # USER LAYER (Pure Native Home Manager)
   # ---------------------------------------------------------------------------
   home-manager.users.webdev4 = { pkgs, ... }: {
-    
+
     # 1. Custom Automatic Autostart Daemons (Replaces exec-once)
     home.file = {
       ".config/autostart/cliphist.desktop".text = ''
@@ -84,7 +84,7 @@
 
       [org.kde.krunner.desktop]
       RunCommand=Meta+Space\tMeta+R,none,Run Command
-      
+
       [org.kde.spectacle.desktop]
       RectangularRegionScreenShot=Meta+Shift+S,none,Take Rectangular Region Screenshot
     '';
